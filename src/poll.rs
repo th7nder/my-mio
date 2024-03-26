@@ -48,7 +48,7 @@ pub struct Registry {
 }
 
 impl Registry {
-    pub fn registry(&self, source: TcpStream, token: usize, interests: i32) -> Result<()> {
+    pub fn register(&self, source: &TcpStream, token: usize, interests: i32) -> Result<()> {
         let mut event = ffi::Event {
             events: interests as u32,
             epoll_data: token,
