@@ -1,6 +1,17 @@
 
 
-pub struct Event;
+#[derive(Debug)]
+#[repr(C, packed)]
+pub struct Event {
+    pub(crate) events: u32,
+    pub(crate) epoll_data: usize
+}
+
+impl Event {
+    pub fn token(&self) -> usize {
+        self.epoll_data
+    }
+}
 
 pub const EPOLL_CTL_ADD: i32 = 1;
 pub const EPOLLIN: i32 = 0x1;
